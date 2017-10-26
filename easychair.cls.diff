@@ -1,0 +1,20 @@
+diff --git a/easychair.cls b/easychair.cls
+index 7a8d8e9..737d94e 100644
+--- a/easychair.cls
++++ b/easychair.cls
+@@ -341,10 +341,12 @@
+ %\DeclareOption{fullpage}{\fullpagetrue}
+ %\DeclareOption{savetrees}{\savetreestrue}
+ 
+-% Bark at any unknown package option
+-\DeclareOption*{\PackageWarning{easychair}{Unknown option '\CurrentOption'}}
+ \DeclareOption*{\PassOptionsToPackage{\CurrentOption}{geometry}}
+-%\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
++\ifthesis
++	\DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
++\else
++  \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
++\fi
+ 
+ %\ExecuteOptions{centertags,portrait,10pt,twoside,onecolumn,final}
+ %\ExecuteOptions{}
